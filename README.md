@@ -23,31 +23,31 @@ The User can also bookmark the movies and tv-shows that he likes and get back to
 
 #### Home Page
 
-![](./screenshots/homepage.png)
+![](./screenshots/homepage-min.png)
 
 #### Movies Page
 
-![](./screenshots/movies.png)
+![](./screenshots/movies-min.png)
 
 #### Tv-shows Page
 
-![](./screenshots/tvShows.png)
+![](./screenshots/tvShows-min.png)
 
 #### Movies Article
 
-![](./screenshots/movieArticle.png)
+![](./screenshots/movieArticle-min.png)
 
 #### Tv-show Article
 
-![](./screenshots/tvArticle.png)
+![](./screenshots/tvArticle-min.png)
 
 #### Search Page
 
-![](./screenshots/SearchPage.png)
+![](./screenshots/SearchPage-min.png)
 
 #### Bookmarked Page
 
-![](./screenshots/Bookmarked.png)
+![](./screenshots/Bookmarked-min.png)
 
 ### Links
 
