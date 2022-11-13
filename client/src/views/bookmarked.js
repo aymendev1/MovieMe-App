@@ -37,7 +37,7 @@ function BookmarkedSection(props) {
               age={item.adult ? "+18" : "-18"}
               year={item.release_date.substring(0, 4)}
               linkHref={`/${item.media_type}/${item.id}`}
-              imageurl={item.poster_path}
+              imageurl={"https://image.tmdb.org/t/p/w300" + item.poster_path}
             />
           ))}
         </div>
