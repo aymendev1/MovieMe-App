@@ -1,10 +1,9 @@
 import react from "react";
+import Card from "../components/SectionCard";
 import axios from "axios";
-import Card from "../sections/SectionCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import RotateLoader from "react-spinners/RotateLoader";
-
-function MovieSection(props) {
+function Section(props) {
   const [data, setData] = react.useState([]);
   const [PageNumbers, setPageNumbers] = react.useState(1);
   const [currentPageNumber, setcurrentPageNumber] = react.useState(1);
@@ -18,7 +17,7 @@ function MovieSection(props) {
     let cancel;
     axios({
       method: "GET",
-      url: `/api/movies/${currentPageNumber}`,
+      url: `/api/tvshows/${currentPageNumber}`,
       cancelToken: new axios.CancelToken((c) => (cancel = c)),
     })
       .then((res) => {
@@ -58,7 +57,6 @@ function MovieSection(props) {
           dataLength={20 * currentPageNumber}
           next={nextPage}
           hasMore={HasMore}
-          getScrollParent={() => this.scrollParentRef}
           endMessage={
             <p style={{ textAlign: "center" }}>
               <b>Yay! You have seen it all</b>
@@ -66,14 +64,17 @@ function MovieSection(props) {
           }
         >
           {isLoading ? (
-            <RotateLoader color="#fff" />
+            <div className="section loading">
+              {" "}
+              <RotateLoader color="#fff" />
+            </div>
           ) : (
             data.map((item) => (
               <Card
                 name={item.original_title || item.original_name}
                 review={item.vote_average}
                 age={item.adult ? "+18" : "-18"}
-                year={item.release_date.substring(0, 4)}
+                year={item.first_air_date.substring(0, 4)}
                 linkHref={`/${item.media_type}/${item.id}`}
                 imageurl={"https://image.tmdb.org/t/p/w300" + item.poster_path}
               />
@@ -85,4 +86,4 @@ function MovieSection(props) {
   );
 }
 
-export default MovieSection;
+export default Section;

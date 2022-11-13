@@ -1,14 +1,14 @@
 import React from "react";
-import SearchBar from "./SearchBar";
-import TrendingSlide from "./sections/TrendingSlide";
-import RecommendationSection from "./RecommendationSection";
-import MovieSection from "./pages/Movie";
-import TvSection from "./pages/tv";
-import BookmarkedSection from "./pages/bookmarked";
-import SearchSection from "./pages/SearchResult";
-import ArticleMovie from "./pages/ArticleMovie";
-import ArticleTv from "./pages/ArticleTv";
-import ErrorPage from "./pages/ErrorPage";
+import SearchBar from "../components/SearchBar";
+import TrendingSlide from "../components/TrendingSlide";
+import RecommendationSection from "../components/RecommendationSection";
+import MovieSection from "../views/Movie";
+import TvSection from "../views/tv";
+import BookmarkedSection from "../views/bookmarked";
+import SearchSection from "../views/SearchResult";
+import ArticleMovie from "../views/ArticleMovie";
+import ArticleTv from "../views/ArticleTv";
+import ErrorPage from "../views/ErrorPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 function home() {
   return (

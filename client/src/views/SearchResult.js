@@ -1,9 +1,9 @@
 import react from "react";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Card from "../sections/SectionCard";
-import RotateLoader from "react-spinners/RotateLoader";
+import Card from "../components/SectionCard";
 import { useParams } from "react-router-dom";
+import RotateLoader from "react-spinners/RotateLoader";
 function SearchSection() {
   let { query } = useParams();
   const [data, setData] = react.useState([]);
@@ -11,11 +11,11 @@ function SearchSection() {
   const [currentPageNumber, setcurrentPageNumber] = react.useState(1);
   const [totalResult, settotalResult] = react.useState(0);
   const [isLoading, setLoading] = react.useState(true);
-  const [error, setError] = react.useState(false);
+  const [error, setError] = react.useState("");
   const [HasMore, sethasMore] = react.useState(true);
   react.useEffect(() => {
     setLoading(true);
-    setError(false);
+    setError("");
     let cancel;
     axios({
       method: "GET",
@@ -29,17 +29,18 @@ function SearchSection() {
         setPageNumbers(res.data.total_pages);
         setcurrentPageNumber(res.data.current_page);
         settotalResult(res.data.total_results);
+        setLoading(false);
       })
       .catch((err) => {
         if (axios.isCancel(err)) return;
         else {
-          setError(true);
+          setLoading(false);
+          setError(err.message);
         }
       });
-    setLoading(false);
+
     return () => cancel();
   }, [currentPageNumber]);
-  console.log(data);
   const nextPage = () => {
     if (currentPageNumber === PageNumbers) {
       sethasMore(false);
@@ -50,7 +51,16 @@ function SearchSection() {
     }
   };
 
-  return (
+  return isLoading ? (
+    <div className="section loading">
+      <RotateLoader color="#fff" />
+    </div>
+  ) : error ? (
+    <div className="section">
+      <span>Error</span>
+      <span>{error}</span>
+    </div>
+  ) : (
     <div className="section">
       <h1 className="Trending_title">
         Result for : {query} ( {totalResult} )

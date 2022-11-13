@@ -1,9 +1,10 @@
 import react from "react";
-import Card from "../sections/SectionCard";
 import axios from "axios";
+import Card from "../components/SectionCard";
 import InfiniteScroll from "react-infinite-scroll-component";
 import RotateLoader from "react-spinners/RotateLoader";
-function Section(props) {
+
+function MovieSection(props) {
   const [data, setData] = react.useState([]);
   const [PageNumbers, setPageNumbers] = react.useState(1);
   const [currentPageNumber, setcurrentPageNumber] = react.useState(1);
@@ -17,7 +18,7 @@ function Section(props) {
     let cancel;
     axios({
       method: "GET",
-      url: `/api/tvshows/${currentPageNumber}`,
+      url: `/api/movies/${currentPageNumber}`,
       cancelToken: new axios.CancelToken((c) => (cancel = c)),
     })
       .then((res) => {
@@ -57,6 +58,7 @@ function Section(props) {
           dataLength={20 * currentPageNumber}
           next={nextPage}
           hasMore={HasMore}
+          getScrollParent={() => this.scrollParentRef}
           endMessage={
             <p style={{ textAlign: "center" }}>
               <b>Yay! You have seen it all</b>
@@ -64,17 +66,14 @@ function Section(props) {
           }
         >
           {isLoading ? (
-            <div className="section loading">
-              {" "}
-              <RotateLoader color="#fff" />
-            </div>
+            <RotateLoader color="#fff" />
           ) : (
             data.map((item) => (
               <Card
                 name={item.original_title || item.original_name}
                 review={item.vote_average}
                 age={item.adult ? "+18" : "-18"}
-                year={item.first_air_date.substring(0, 4)}
+                year={item.release_date.substring(0, 4)}
                 linkHref={`/${item.media_type}/${item.id}`}
                 imageurl={"https://image.tmdb.org/t/p/w300" + item.poster_path}
               />
@@ -86,4 +85,4 @@ function Section(props) {
   );
 }
 
-export default Section;
+export default MovieSection;

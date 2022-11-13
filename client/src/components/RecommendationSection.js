@@ -1,6 +1,6 @@
 import react from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import Card from "./sections/SectionCard";
+import Card from "./SectionCard";
 import axios from "axios";
 import RotateLoader from "react-spinners/RotateLoader";
 

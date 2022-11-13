@@ -1,14 +1,8 @@
-import react from "react";
 import { BiCameraMovie, BiMenu } from "react-icons/bi";
 import { BsGridFill, BsGithub } from "react-icons/bs";
 import { AiOutlineClose } from "react-icons/ai";
 import profilepic from "../assets/profilepic.jpg";
-import {
-  MdLocalMovies,
-  MdLiveTv,
-  MdOutlineBookmark,
-  MdOutlineLogout,
-} from "react-icons/md";
+import { MdLocalMovies, MdLiveTv, MdOutlineBookmark } from "react-icons/md";
 function sidebar() {
   return (
     <div className="sidebar">
@@ -55,7 +49,7 @@ function sidebar() {
       <div className="profile_content">
         <div className="profile">
           <div className="profile_details">
-            <img src={profilepic} />
+            <img alt="" src={profilepic} />
             <a className="UserName" href="https://github.com/aymendev1">
               Aymendev1
             </a>

@@ -1,5 +1,5 @@
 // js
-import React, { useState } from "react";
+import React from "react";
 import YouTube from "react-youtube";
 class YoutubePlayer extends React.Component {
   _onReady(event) {

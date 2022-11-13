@@ -1,27 +1,43 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { useParams } from "react-router-dom";
 import { BiTimeFive } from "react-icons/bi";
 import { MdLanguage } from "react-icons/md";
 import { BsFillCalendarDateFill, BsBookmarkPlus } from "react-icons/bs";
-import { YoutubePlayer } from "../effects/YoutubePlayer";
+import { YoutubePlayer } from "../hooks/YoutubePlayer";
+import { Triangle } from "react-loader-spinner";
 
-function ArticleTV(props) {
+function MovieArticle(props) {
   const [data, setData] = React.useState([]);
   const [IsBookmarked, setIsBookmarked] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   let bookmarked = [];
-
-  let { id } = useParams();
-  let url = "/api/" + props.type + "/" + id;
-
+  const { id } = useParams();
+  const url = "/api/" + props.type + "/" + id;
   React.useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((daa) => setData(daa.content))
+    setLoading(true);
+    setError("");
+    let cancel;
+    axios({
+      method: "GET",
+      url: url,
+      cancelToken: new axios.CancelToken((c) => (cancel = c)),
+    })
+      .then((res) => {
+        setData(res.data.content);
+        setLoading(false);
+      })
       .catch((err) => {
-        console.log(err);
+        if (axios.isCancel(err)) return;
+        else {
+          setError(err.message);
+          console.log(err);
+        }
       });
+    setLoading(false);
+    return () => cancel();
   });
-
   const CheckBookmarkStorage = () => {
     if (localStorage.getItem("bookmarked") === null) {
       // WHEN STORAGE DOESN'T EXIST , WE CREATE A LOCAL STORE FILE
@@ -62,32 +78,30 @@ function ArticleTV(props) {
     }
   };
 
-  function getDate(dateToFormat) {
-    //Formating Date to string
-    var airDate = new Date(dateToFormat);
-    var airDateoptions = {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-
-    return airDate.toLocaleDateString("en-US", airDateoptions);
-  }
-
-  return (
+  return isLoading ? (
+    <div className="section loading">
+      <Triangle
+        height="80"
+        width="80"
+        color="#4fa94d"
+        ariaLabel="triangle-loading"
+        wrapperStyle={{}}
+        wrapperClassName=""
+        visible={true}
+      />
+    </div>
+  ) : (
     <div className="section">
       <div className="container_article">
         <div className="grid1_article">
-          <h1 className="title_article"> {data.name}</h1>
+          <h1 className="title_article"> {data.original_title}</h1>
           <span className="tagline">
             {(data.tagline = null ? "" : data.tagline)}
           </span>
           <div className="informations_article">
             <div className="informations_article_child">
               <BiTimeFive className="details_info_article_icon" />
-              <span className="details_info_article">
-                {data.number_of_seasons} Seasons
-              </span>
+              <span className="details_info_article">{data.runtime} min</span>
             </div>
             <div className="informations_article_child">
               <MdLanguage className="details_info_article_icon " />
@@ -101,9 +115,7 @@ function ArticleTV(props) {
             </div>
             <div className="informations_article_child">
               <BsFillCalendarDateFill className="details_info_article_icon" />
-              <span className="details_info_article">
-                {getDate(data.first_air_date)}
-              </span>
+              <span className="details_info_article">{data.release_date}</span>
             </div>
           </div>
           <p className="overview_article">
@@ -194,28 +206,6 @@ function ArticleTV(props) {
                     })}
               </dd>
             </dl>
-            <dl>
-              <dt>
-                <span>Directors </span>
-              </dt>
-              <dd>
-                {data.created_by === undefined
-                  ? "Loading"
-                  : data.created_by.map((item) => {
-                      let item_index = data.created_by.indexOf(item) + 1;
-
-                      if (item_index === data.created_by.length) {
-                        return (
-                          <a href={"/search/" + item.name}>{item.name} </a>
-                        );
-                      } else {
-                        return (
-                          <a href={"/search/" + item.name}>{item.name} , </a>
-                        );
-                      }
-                    })}
-              </dd>
-            </dl>
           </div>
           <button className="bookmarkme" onClick={bookmarkMe}>
             <BsBookmarkPlus className="bookmarkme_icon" />
@@ -234,73 +224,31 @@ function ArticleTV(props) {
         </div>
       </div>
       <div className="container_season">
-        <button type="button" class="collapsible container_season_title">
-          Seasons :
-        </button>
-        <div className="group-container">
-          {data.seasons === undefined
-            ? "Loading"
-            : data.seasons.map((item) => {
-                //Poster URl
-                var posterURL;
-                item.poster_path === null
-                  ? (posterURL = `https://image.tmdb.org/t/p/original${data.poster_path}`)
-                  : (posterURL = `https://image.tmdb.org/t/p/original${item.poster_path}`);
-
+        <span className="container_season_title"> Trailers :</span>
+        {data.videos === undefined
+          ? "Loading"
+          : data.videos.results.map((item) => {
+              if (item.type === "Teaser" || "Trailer") {
                 return (
                   <div className="season_box">
                     <div className="season_poster">
-                      <img src={posterURL} alt={item.name} />
+                      <YoutubePlayer videoID={item.key} />
                     </div>
                     <div className="season_details">
                       <span className="season_name">{item.name}</span>
-                      <span className="season_epnum">
-                        {item.episode_count === 1
-                          ? `${item.episode_count} Episode`
-                          : `${item.episode_count} Episodes`}
-                      </span>
+
                       <span className="season_date">
-                        {getDate(item.air_date)}
+                        {item.published_at.substring(0, 10)}
                       </span>
-                      <span className="season_overview">
-                        {item.overview === ""
-                          ? "Overview will be available soon ..."
-                          : item.overview}
-                      </span>
+                      <span className="season_date">{item.type}</span>
                     </div>
                   </div>
                 );
-              })}
-        </div>
-        <button type="button" class="collapsible container_season_title">
-          Trailers :
-        </button>
-        <div className="group-container">
-          {data.seasons === undefined
-            ? "Loading"
-            : data.videos.results.map((item) => {
-                if (item.type === "Teaser" || "Trailer") {
-                  return (
-                    <div className="season_box">
-                      <div className="season_poster">
-                        <YoutubePlayer videoID={item.key} />
-                      </div>
-                      <div className="season_details">
-                        <span className="season_name">{item.name}</span>
-
-                        <span className="season_date">
-                          {item.published_at.substring(0, 10)}
-                        </span>
-                        <span className="season_date">{item.type}</span>
-                      </div>
-                    </div>
-                  );
-                }
-              })}
-        </div>
+              }
+            })}
       </div>
     </div>
   );
 }
 
-export default ArticleTV;
+export default MovieArticle;

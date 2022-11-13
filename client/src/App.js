@@ -1,6 +1,6 @@
 import React from "react";
 import SideBar from "./components/sidebar";
-import Home from "./components/home";
+import Home from "./layout/homeLayout";
 import { Helmet } from "react-helmet";
 function App() {
   return (

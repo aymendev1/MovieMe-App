@@ -1,5 +1,5 @@
 import react from "react";
-import Card from "../sections/SectionCard";
+import Card from "../components/SectionCard";
 
 function BookmarkedSection(props) {
   const [isError, setError] = react.useState(false);

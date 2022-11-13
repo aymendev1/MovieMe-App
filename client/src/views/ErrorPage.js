@@ -1,5 +1,5 @@
 import react from "react";
-import Illustartion from "../../assets/7.png";
+import Illustartion from "../assets/7.png";
 export default function ErrorPage() {
   const [timer, setTimer] = react.useState(7);
 
