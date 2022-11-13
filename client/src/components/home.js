@@ -8,6 +8,7 @@ import BookmarkedSection from "./pages/bookmarked";
 import SearchSection from "./pages/SearchResult";
 import ArticleMovie from "./pages/ArticleMovie";
 import ArticleTv from "./pages/ArticleTv";
+import ErrorPage from "./pages/ErrorPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 function home() {
   return (
@@ -36,6 +37,9 @@ function home() {
           </Route>
           <Route path={`/tv/:id`}>
             <ArticleTv type="tv" />
+          </Route>
+          <Route path="*">
+            <ErrorPage />
           </Route>
         </Switch>
       </div>

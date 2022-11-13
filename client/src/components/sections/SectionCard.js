@@ -28,13 +28,11 @@ function Card(props) {
       if (bookmark.id === props.itemID) {
         bookmarked.splice(bookmarked.indexOf(bookmark), 1);
         localStorage.setItem("bookmarked", JSON.stringify(bookmarked));
-        console.log("Bookmarked removed");
         setIsBookmarked(false);
       }
     });
     //// If the bookmarked is not  bookmarked , we add it to the Storage
     if (IsBookmarked === false) {
-      console.log("Not Bookmarked");
       bookmarked.push({
         id: props.itemID,
         media_type: props.itemType,
@@ -51,12 +49,9 @@ function Card(props) {
   return (
     <div className="Card" key={props.key}>
       <div className="card_image_box shine">
-        <img
-          className="card_image"
-          src={props.imageurl}
-          alt={props.name}
-          href={props.linkHref}
-        />
+        <a href={props.linkHref}>
+          <img className="card_image" src={props.imageurl} alt={props.name} />
+        </a>
       </div>
 
       <div className="Card_content">

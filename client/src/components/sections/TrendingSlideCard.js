@@ -47,11 +47,14 @@ function TrendingCard(props) {
   };
   return (
     <div className="TrendingCard">
-      <img
-        className="TrendingCard_image"
-        src={props.imageurl}
-        alt={props.name}
-      />
+      <a href={props.linkHref}>
+        <img
+          className="TrendingCard_image"
+          src={props.imageurl}
+          alt={props.name}
+        />
+      </a>
+
       <div className="TrendingCard_content">
         <div className="TrendingCard_details">
           <MdUpdate className="TrendingCard_breakpoint" />

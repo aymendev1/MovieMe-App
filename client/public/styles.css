@@ -106,12 +106,13 @@ body {
   height: 90%;
   padding: 10px;
 }
-.sidebar.active span ,.sidebar.active .UserName{
+.sidebar.active span,
+.sidebar.active .UserName {
   opacity: 1;
 }
-.sidebar span ,.sidebar .UserName {
+.sidebar span,
+.sidebar .UserName {
   opacity: 0;
-
 }
 .sidebar ul li .tooltip {
   position: absolute;
@@ -179,7 +180,7 @@ body {
   font-size: 15px;
   font-family: var(--Font);
   text-decoration: none;
-  color: #fff
+  color: #fff;
 }
 .profile #log_out {
   min-width: 24px;
@@ -258,16 +259,16 @@ body {
   color: #fff;
   margin: 20px 0px;
 }
-.error-msg{
-    font-size: 30px;
-      font-family: var(--Font);
-      font-weight: var(--F_bold);
-      color: #fff;
-      margin: 20px 0px;
-      text-align: center;
-      width: 100%;
+.error-msg {
+  font-size: 30px;
+  font-family: var(--Font);
+  font-weight: var(--F_bold);
+  color: #fff;
+  margin: 20px 0px;
+  text-align: center;
+  width: 100%;
 }
-.loading-anim{
+.loading-anim {
   width: 100%;
   height: 100%;
 }
@@ -281,8 +282,8 @@ body {
   position: relative;
   text-align: right;
   color: #fff;
-    -webkit-transition: 0.4s ease;
-      transition: 0.4s ease;
+  -webkit-transition: 0.4s ease;
+  transition: 0.4s ease;
 }
 .TrendingCard_content {
   position: absolute;
@@ -468,7 +469,7 @@ body {
   grid-template-columns: repeat(6, 1fr);
   grid-column-gap: 50px;
   grid-row-gap: 20px;
-  padding: 10px 20px ;
+  padding: 10px 20px;
 }
 .container_article {
   display: grid;
@@ -495,7 +496,8 @@ body {
   position: relative;
   z-index: 0;
   border: 2px solid #10141f;
-  object-fit: fill;
+  object-fit: cover;
+  object-position: center;
 }
 .shadow {
   position: absolute;
@@ -514,13 +516,13 @@ body {
   position: relative;
   width: 250px;
   -webkit-transition: 0.4s ease;
-    transition: 0.4s ease;
+  transition: 0.4s ease;
 }
-.Card:hover ,.TrendingCard:hover{
-    -webkit-transform: scale(1.05);
-      transform: scale(1.05);
-      cursor: pointer;
-      
+.Card:hover,
+.TrendingCard:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+  cursor: pointer;
 }
 .card_image {
   height: 350px;
@@ -529,7 +531,7 @@ body {
   border-radius: 20px;
   margin-bottom: 5px;
   -webkit-transition: 0.4s ease;
-    transition: 0.4s ease;
+  transition: 0.4s ease;
 }
 /* .card_image:hover{
   -webkit-transform: scale(1.08);
@@ -554,24 +556,22 @@ body {
   margin: 20px;
 }
 .collapsible {
-    cursor: pointer;
-      width: 100%;
-      border: none;
-      text-align: center;
-      outline: none;
-      font-size: 25px;
-      background-color: #161d2f !important;
-      width: 90%;
-      padding: 15px;
-      margin: 10px 0px;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
-      
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 25px;
+  background-color: #161d2f !important;
+  width: 90%;
+  padding: 15px;
+  margin: 10px 0px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 .active-collapsible,
 .collapsible:hover {
   background-color: #ccc;
-  
 }
 .season_box {
   display: flex;
@@ -582,11 +582,12 @@ body {
   background-color: #161d2f;
   margin-bottom: 20px;
 }
-.group-container{
-    display: none;
-      overflow: hidden;
-      -webkit-animation: scale-in-ver-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-        animation: scale-in-ver-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+.group-container {
+  display: none;
+  overflow: hidden;
+  -webkit-animation: scale-in-ver-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: scale-in-ver-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 .season_poster img {
   height: 350px;
@@ -628,6 +629,45 @@ body {
   text-align: justify;
   padding-top: 20px;
 }
+.loading {
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+}
+.errorPage {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.errorPage > img {
+  width: 50%;
+  height: 50%;
+}
+.errorPage > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.errorPage > div > :nth-child(1) {
+  font-family: var(--Font);
+  font-weight: var(--F_bold);
+  font-size: 50px;
+  color: #fff;
+}
+.errorPage > div > :nth-child(2) {
+  font-family: var(--Font);
+  font-weight: var(--F_regular);
+  color: #fff;
+}
+.errorPage > div > :nth-child(3) {
+  font-family: var(--Font);
+  font-weight: var(--F_light);
+  color: #fff;
+  font-size: 20px;
+}
+
 @media screen and (max-width: 1800px) {
   .container {
     grid-template-columns: repeat(6, 1fr);
