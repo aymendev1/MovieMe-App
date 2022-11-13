@@ -5,7 +5,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import RotateLoader from "react-spinners/RotateLoader";
 function Section(props) {
   const [data, setData] = react.useState([]);
-
   const [PageNumbers, setPageNumbers] = react.useState(1);
   const [currentPageNumber, setcurrentPageNumber] = react.useState(1);
   const [isLoading, setLoading] = react.useState(true);
@@ -65,7 +64,10 @@ function Section(props) {
           }
         >
           {isLoading ? (
-            <RotateLoader color="#fff" />
+            <div className="section loading">
+              {" "}
+              <RotateLoader color="#fff" />
+            </div>
           ) : (
             data.map((item) => (
               <Card
