@@ -16,7 +16,7 @@ export default function App() {
     let cancel;
     axios({
       method: "GET",
-      url: `/trending`,
+      url: `${process.env.REACT_APP_SERVER}/trending`,
       cancelToken: new axios.CancelToken((c) => (cancel = c)),
     })
       .then((res) => {
