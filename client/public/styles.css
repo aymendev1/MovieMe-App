@@ -470,6 +470,7 @@ body {
   grid-column-gap: 50px;
   grid-row-gap: 20px;
   padding: 10px 20px;
+  width: 100%;
 }
 .container_article {
   display: grid;
@@ -533,11 +534,11 @@ body {
   -webkit-transition: 0.4s ease;
   transition: 0.4s ease;
 }
-/* .card_image:hover{
-  -webkit-transform: scale(1.08);
-    transform: scale(1.08);
-    cursor: pointer;;
-} */
+.card_image:hover {
+  -webkit-box-shadow: 0px -1px 9px 8px rgb(43 45 53);
+  -moz-box-shadow: 0px -1px 9px 8px rgb(43 45 53);
+  box-shadow: 0px -1px 9px 8px rgb(43 45 53);
+}
 
 .Card .bookmarkbtn {
   left: 83%;
@@ -682,14 +683,14 @@ body {
 }
 @media screen and (max-width: 1440px) {
   .container {
-    grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: 30px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 10px;
   }
 }
 @media screen and (max-width: 1380px) {
   .container {
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 50px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 20px;
   }
 }
 @media screen and (max-width: 1024px) {
