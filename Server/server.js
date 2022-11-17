@@ -121,6 +121,6 @@ app.post("/post", (req, res) => {
   let QuerySearch = req.body.querySearch;
   res.redirect(`/search/${QuerySearch}`);
 });
-app.listen(4000, () => {
+app.listen(process.env.PORT || 4000, () => {
   console.log("Server listenning ");
 });
