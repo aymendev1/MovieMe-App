@@ -21,8 +21,8 @@ function MovieSection(props) {
       url: `${process.env.REACT_APP_SERVER}/api/movies/${currentPageNumber}`,
       cancelToken: new axios.CancelToken((c) => (cancel = c)),
     })
-      .then((res) => {
-        setData((data) => {
+      .then(async (res) => {
+        await setData((data) => {
           return [...data, ...res.data.results];
         });
         setPageNumbers(res.data.total_pages);
