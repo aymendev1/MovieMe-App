@@ -14,7 +14,7 @@ function MovieArticle(props) {
   const [error, setError] = useState("");
   let bookmarked = [];
   const { id } = useParams();
-  const url = "/api/" + props.type + "/" + id;
+  const url = `${process.env.REACT_APP_SERVER}/api/${props.type}/${id}`;
   React.useEffect(() => {
     setLoading(true);
     setError("");

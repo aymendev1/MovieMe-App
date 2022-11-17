@@ -18,7 +18,7 @@ function MovieSection(props) {
     let cancel;
     axios({
       method: "GET",
-      url: `/api/movies/${currentPageNumber}`,
+      url: `${process.env.REACT_APP_SERVER}/api/movies/${currentPageNumber}`,
       cancelToken: new axios.CancelToken((c) => (cancel = c)),
     })
       .then((res) => {

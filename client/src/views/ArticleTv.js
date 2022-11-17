@@ -11,7 +11,7 @@ function ArticleTV(props) {
   let bookmarked = [];
 
   let { id } = useParams();
-  let url = "/api/" + props.type + "/" + id;
+  let url = `${process.env.REACT_APP_SERVER}/api/${props.type}/${id}`;
 
   React.useEffect(() => {
     fetch(url)

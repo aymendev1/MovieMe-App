@@ -19,7 +19,7 @@ function SearchSection() {
     let cancel;
     axios({
       method: "GET",
-      url: `/search/${query}/${currentPageNumber}`,
+      url: `${process.env.REACT_APP_SERVER}/search/${query}/${currentPageNumber}`,
       cancelToken: new axios.CancelToken((c) => (cancel = c)),
     })
       .then((res) => {
