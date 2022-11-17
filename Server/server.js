@@ -3,12 +3,14 @@ const app = express();
 const bodyParser = require("body-parser");
 const fetch = require("node-fetch");
 const path = require("path");
+var cors = require("cors");
+
 app.use(bodyParser.urlencoded({ extended: false }));
 require("dotenv").config({
   path: "./config/.env",
 });
 app.use(express.static(path.join("../Client/public")));
-
+app.use(cors());
 app.get("/trending", async (req, res) => {
   try {
     let url = `https://api.themoviedb.org/3/trending/all/day?api_key=${process.env.API_KEY}`;
