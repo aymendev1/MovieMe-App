@@ -18,7 +18,7 @@ function Section(props) {
     let cancel;
     axios({
       method: "GET",
-      url: `${process.env.REACT_APP_SERVER}recommended/${currentPageNumber}`,
+      url: `${process.env.REACT_APP_SERVER}/recommended/${currentPageNumber}`,
       cancelToken: new axios.CancelToken((c) => (cancel = c)),
     })
       .then((res) => {
