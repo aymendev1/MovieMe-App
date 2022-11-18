@@ -52,6 +52,7 @@ The User can also bookmark the movies and tv-shows that he likes and get back to
 ### Links
 
 - Solution URL: [Click Me !](https://github.com/aymendev1/MovieMe-App)
+- Live URL: [Click Me !](https://moviemeappaymendev1.netlify.app/)
 
 ### Built with
 
